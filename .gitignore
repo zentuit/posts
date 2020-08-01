@@ -1,0 +1,6 @@
+coverage
+build/Release
+node_modules
+npm-debug.log
+logs
+*.log
