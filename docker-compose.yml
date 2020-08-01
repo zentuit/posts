@@ -5,10 +5,10 @@ services:
         build: 
             context: .
             target: dev
-        volumes:
-            - .:/node/app:delegated
-            - /node/app/node_modules
-        command: node index.js -f ./in/posts.csv
+        # volumes:
+        #     - .:/node/app:delegated
+        #     - /node/app/node_modules
+        # command: node index.js -f ./in/posts.csv
 
         
         

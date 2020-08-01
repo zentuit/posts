@@ -36,15 +36,19 @@ CMD ["node", "./index.js"]
 # It gets its own stage so we don't have to copy twice
 FROM base as source
 
+USER node
+
 WORKDIR /node/app
 
-COPY . .
+COPY --chown=node:node . .
 
 
 ## Stage 4 (testing)
 # use this in automated CI
 # it has prod and dev npm dependencies
 FROM source as test
+
+USER root
 
 ENV NODE_ENV=development
 ENV PATH=/node/node_modules/.bin:$PATH
@@ -54,10 +58,10 @@ COPY --from=dev /node/node_modules /node/node_modules
 
 # run linters as part of build
 # be sure they are installed with devDependencies
-RUN eslint . 
+# RUN eslint . 
 
 # run unit tests as part of build
-RUN npm test
+# RUN npm test
 
 # run integration testing with docker-compose later
 CMD ["npm", "run", "int-test"] 
@@ -68,8 +72,10 @@ CMD ["npm", "run", "int-test"]
 # it has prod-only dependencies
 FROM source as prod
 
+USER node
+
 ENV NODE_ENV=production
 
 RUN npm audit
 
-CMD ["node", "./bin/www"]
+ENTRYPOINT ["node", "./index.js"]
