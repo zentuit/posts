@@ -28,7 +28,7 @@ RUN npm install --only=development
 
 WORKDIR /node/app
 
-CMD ["node", "./src/index.js"]
+CMD ["node", "./index.js"]
 
 
 ## Stage 3 (copy in source)
@@ -38,7 +38,7 @@ FROM base as source
 
 WORKDIR /node/app
 
-COPY ./src .
+COPY . .
 
 
 ## Stage 4 (testing)

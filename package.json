@@ -5,15 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "npm run start"
+    "start": "npm run start",
+    "int-test": "jest"
   },
   "author": "Tom Jenkins",
   "license": "ISC",
   "dependencies": {
+    "command-line-args": "^5.1.1",
     "csv": "^5.3.2",
     "json-rules-engine": "^5.0.3"
   },
   "devDependencies": {
     "jest": "^26.2.2"
-  }
+  },
+  "type": "module"
 }
