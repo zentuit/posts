@@ -4,6 +4,7 @@ import datefns from 'date-fns';
 import { options, usage } from './src/commandLine.js'
 import loadPosts from './src/loadPosts.js'
 import { loadRulesEngine, engine } from './src/rules.js'
+import outputResults from './src/outputResults.js'
 
 const { format, parse } = datefns;
 
@@ -12,7 +13,7 @@ const otherPosts = []
 const dailyTopPosts = {}
 
 // Main function
-function run() {
+async function main() {
   const args = commandLineArgs(options)
   if (args.help) {
     console.log(commandLineUsage(usage))
@@ -22,17 +23,13 @@ function run() {
   loadRulesEngine(successEvent, failEvent, args.rules)
   // load posts and run them through the rules engine
   const posts = loadPosts(args.file)
-  Promise.all(posts.map((post) => { 
-    return engine.run({ post }) 
-  }))
-    .then(() => {
-      console.log(dailyTopPosts)
-      console.log(`top posts count: ${topPosts.length}`)
-      console.log(`other posts count: ${otherPosts.length}`)
-    })
+  // const results = await processPosts(posts, engine)
+  await processPosts(posts, engine)
+  outputResults({ topPosts, otherPosts, dailyTopPosts }, args.output)
 }
 
 const successEvent = (event, almanac, ruleResult) => {
+  console.log('success')
   // we have a successful top post so we add it to the list of top posts
   // and if update daily top post if its better
   almanac.factValue('post')
@@ -53,6 +50,12 @@ const failEvent = (event, almanac, ruleResult) => {
     .then(post => {
       otherPosts.push(post)
     })
+}
+
+const processPosts = async (posts, engine) => {
+  await Promise.all(posts.map((post) => { 
+    return engine.run({ post }) 
+  }))
 }
 
 // Set up some process listeners...
@@ -88,4 +91,4 @@ function shutdown(err) {
   process.exit()
 }
 
-run()
+main()
