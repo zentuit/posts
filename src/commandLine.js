@@ -14,11 +14,30 @@ const options = [
       typeLabel: '{underline file} ...'
     },
     {
+        name: 'dir',
+        alias: 'd',
+        description: 'The directory to write the output csvs (defaults to ./out).',
+        type: String,
+        typeLabel: '{underline dir} ...'
+      },
+      {
+        name: 'as-json',
+        description: 'Output the results as JSON files.',
+        type: Boolean,
+        typeLabel: '{underline dir} ...'
+      },
+      {
+        name: 'full-record',
+        description: 'Output the results as full records instead of just IDs.',
+        type: Boolean,
+        typeLabel: '{underline dir} ...'
+      },
+      {
       name: 'rules',
       alias: 'r',
       description: 'JSON file of rules to use against posts',
       type: String,
-      typeLabel: '{underline file} ...'
+      typeLabel: '{underline rules} ...'
     }
   ]
   

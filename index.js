@@ -25,11 +25,10 @@ async function main() {
   const posts = loadPosts(args.file)
   // const results = await processPosts(posts, engine)
   await processPosts(posts, engine)
-  outputResults({ topPosts, otherPosts, dailyTopPosts }, args.output)
+  outputResults({ topPosts, otherPosts, dailyTopPosts }, args.output, args['as-json'], args['full-record'])
 }
 
 const successEvent = (event, almanac, ruleResult) => {
-  console.log('success')
   // we have a successful top post so we add it to the list of top posts
   // and if update daily top post if its better
   almanac.factValue('post')
