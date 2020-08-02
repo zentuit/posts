@@ -39,10 +39,9 @@ const defaultRules = {
     }
 }
 
-// const loadRules = (filename) => {
-//     import newRules from filename
-//     return newRules
-// }
+const loadRules = (filename) => {
+    throw 'External rules not implemented yet'
+}
 
 const engine = new Engine()
 
@@ -54,8 +53,7 @@ const engine = new Engine()
  * @param {string} rulesJSON optional filename of JSON rules file
  */
 const loadRulesEngine = (successEvent, failEvent, rulesJSON = null) => {
-    // const rules = rulesJSON ? loadJSON(rulesJSON) : defaultRules
-    const rules = defaultRules
+    const rules = rulesJSON ? loadJSON(rulesJSON) : defaultRules
 
     // Define a 'maxLength' custom operator, for use in later rules
     engine.addOperator('maxLength', (factValue, jsonValue) => {
