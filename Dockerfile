@@ -1,6 +1,6 @@
 ## Stage 1 (production base)
 # This gets our prod dependencies installed and out of the way
-FROM node:14-stretch-slim as base
+FROM node:10-stretch-slim as base
 
 ENV NODE_ENV=production
 
