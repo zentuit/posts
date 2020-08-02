@@ -1,4 +1,4 @@
-import jre from 'json-rules-engine'
+const jre = require('json-rules-engine')
 const { Engine } = jre
 
 /**
@@ -74,7 +74,7 @@ const loadRulesEngine = (successEvent, failEvent, rulesJSON = null) => {
         })  
 }
 
-export {
+module.exports = {
     loadRulesEngine,
     engine,
 }

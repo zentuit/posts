@@ -55,7 +55,7 @@ const options = [
     },
   ]
   
-export {
+module.exports = {
     options,
     usage
 }  

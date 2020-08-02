@@ -1,7 +1,6 @@
-import path from 'path'
-import fs from 'fs'
-import stringify from 'csv-stringify/lib/sync.js'
-
+const path = require('path')
+const fs = require('fs')
+const stringify = require('csv-stringify/lib/sync')
 
 const prep = (records, asJSON, fullRecord, pretty) => {
     const results = fullRecord
@@ -38,4 +37,4 @@ const outputResults = (results, dir = './out', asJSON = false, fullRecord = fals
     writeFile(buildFilename('daily_top_posts'), dailyTopPosts)
 }
 
-export default outputResults
+module.exports = outputResults

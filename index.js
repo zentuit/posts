@@ -1,12 +1,14 @@
-import commandLineArgs from 'command-line-args'
-import commandLineUsage from 'command-line-usage'
-import datefns from 'date-fns';
-import { options, usage } from './src/commandLine.js'
-import loadPosts from './src/loadPosts.js'
-import { loadRulesEngine, engine } from './src/rules.js'
-import outputResults from './src/outputResults.js'
+const commandLineArgs = require('command-line-args')
+const commandLineUsage = require('command-line-usage')
+const datefns = require('date-fns')
+const commandLine = require('./src/commandLine')
+const loadPosts = require('./src/loadPosts')
+const rules = require('./src/rules')
+const outputResults = require('./src/outputResults')
 
-const { format, parse } = datefns;
+const { format, parse } = datefns
+const { options, usage } = commandLine
+const { loadRulesEngine, engine } = rules
 
 const topPosts = []
 const otherPosts = []
