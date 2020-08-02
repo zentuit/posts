@@ -6,3 +6,4 @@ logs
 *.log
 out/*.csv
 out/*.json
+images
