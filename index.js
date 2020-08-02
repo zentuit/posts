@@ -25,7 +25,7 @@ async function main() {
   const posts = loadPosts(args.file)
   // const results = await processPosts(posts, engine)
   await processPosts(posts, engine)
-  outputResults({ topPosts, otherPosts, dailyTopPosts }, args.output, args['as-json'], args['full-record'])
+  outputResults({ topPosts, otherPosts, dailyTopPosts }, args.output, args['as-json'], args['full-record'], args['pretty-print'])
 }
 
 const successEvent = (event, almanac, ruleResult) => {

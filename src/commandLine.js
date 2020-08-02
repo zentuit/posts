@@ -24,20 +24,23 @@ const options = [
         name: 'as-json',
         description: 'Output the results as JSON files.',
         type: Boolean,
-        typeLabel: '{underline dir} ...'
       },
       {
         name: 'full-record',
         description: 'Output the results as full records instead of just IDs.',
         type: Boolean,
-        typeLabel: '{underline dir} ...'
+      },
+      {
+        name: 'pretty-print',
+        description: 'Output the JSON results pretty printed (2 space indentation).',
+        type: Boolean,
       },
       {
       name: 'rules',
       alias: 'r',
       description: 'JSON file of rules to use against posts',
       type: String,
-      typeLabel: '{underline rules} ...'
+      typeLabel: '{underline rules_file} ...'
     }
   ]
   
