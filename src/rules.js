@@ -53,7 +53,7 @@ const engine = new Engine()
  * @param {string} rulesJSON optional filename of JSON rules file
  */
 const loadRulesEngine = (successEvent, failEvent, rulesJSON = null) => {
-    const rules = rulesJSON ? loadJSON(rulesJSON) : defaultRules
+    const rules = rulesJSON ? loadRules(rulesJSON) : defaultRules
 
     // Define a 'maxLength' custom operator, for use in later rules
     engine.addOperator('maxLength', (factValue, jsonValue) => {
