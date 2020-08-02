@@ -1,16 +1,19 @@
 import fs from 'fs'
-import csv from 'csv'
+import parse from 'csv-parse/lib/sync.js'
 
 // we're loading the posts synchronously
 // TODO - investigate async loading if we have large files
-export default function(filename) {
+
+const loadPosts = (filename) => {
     if (!filename) {
         throw 'Posts input file name must be provided'
     }
     const posts = fs.readFileSync(filename)
-    return csv.parse(posts, {
+    return parse(posts, {
         columns: true,
         skip_empty_lines: true,
         relax: true,
       })
 }
+
+export default loadPosts
