@@ -22,9 +22,6 @@ function run() {
   loadRulesEngine(successEvent, failEvent, args.rules)
   // load posts and run them through the rules engine
   const posts = loadPosts(args.file)
-  // const promises = posts.map((post) => { 
-  //   engine.run({ post }) 
-  // })
   Promise.all(posts.map((post) => { 
     return engine.run({ post }) 
   }))
@@ -43,7 +40,7 @@ const successEvent = (event, almanac, ruleResult) => {
       topPosts.push(post)
       const parsed = parse(post.timestamp, 'EEE LLL dd HH:mm:ss yyyy', new Date())
       const date = format(parsed, 'MM/dd/yyyy')
-      const daily = dailyTopPosts[date] || { likes: 0 }
+      const daily = dailyTopPosts[date] || { likes: -1 }
       if (post.likes > daily.likes) {
         dailyTopPosts[date] = post
       }
