@@ -18,9 +18,12 @@ const writeFile = (filename, records) => {
 }
 
 const outputResults = (results, dir = './out', asJSON = false, fullRecord = false) => {
+    // output the flat lists 
     const topPosts = prep(results.topPosts, asJSON, fullRecord)
     const otherPosts = prep(results.otherPosts, asJSON, fullRecord)
-    // const daily = prep(results.dailyTopPosts, asJSON, true)
+    
+    // extract the daily values for outputting
+    const dailyTopPosts = prep(results.dailyTopPosts.values(), asJSON, true)
 
     const extension = asJSON ? '.json' : 'csv'
     const buildFilename = (name) => {
@@ -28,7 +31,7 @@ const outputResults = (results, dir = './out', asJSON = false, fullRecord = fals
     }
     writeFile(buildFilename('top_posts'), topPosts)
     writeFile(buildFilename('other_posts'), otherPosts)
-    // writeFile(buildFilename('daily_top_posts'), topPosts)
+    writeFile(buildFilename('daily_top_posts'), dailyTopPosts)
 }
 
 export default outputResults

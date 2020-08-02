@@ -10,7 +10,7 @@ const { format, parse } = datefns;
 
 const topPosts = []
 const otherPosts = []
-const dailyTopPosts = {}
+const dailyTopPosts = new Map()
 
 // Main function
 async function main() {
@@ -36,9 +36,9 @@ const successEvent = (event, almanac, ruleResult) => {
       topPosts.push(post)
       const parsed = parse(post.timestamp, 'EEE LLL dd HH:mm:ss yyyy', new Date())
       const date = format(parsed, 'MM/dd/yyyy')
-      const daily = dailyTopPosts[date] || { likes: -1 }
+      const daily = dailyTopPosts.get(date) || { likes: -1 }
       if (post.likes > daily.likes) {
-        dailyTopPosts[date] = post
+        dailyTopPosts.set(date, post)
       }
     })
 }
